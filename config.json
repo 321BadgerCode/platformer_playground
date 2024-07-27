@@ -1,0 +1,47 @@
+{
+	"levels":
+	{
+		"./level/level1.bmp":
+		{
+			"enemies":
+			{
+				"speed": [1]
+			}
+		},
+		"./level/level2.bmp":
+		{
+			"enemies":
+			{
+				"speed": [1,2]
+			}
+		},
+		"./level/level3.bmp":
+		{
+			"enemies":
+			{
+				"speed": [7]
+			}
+		},
+		"./level/level4.bmp":
+		{
+			"enemies":
+			{
+				"speed": [6]
+			}
+		},
+		"./level/level5.bmp":
+		{
+			"enemies":
+			{
+				"speed": [8]
+			}
+		},
+		"./level/level6.bmp":
+		{
+			"enemies":
+			{
+				"speed": [2]
+			}
+		}
+	}
+}
