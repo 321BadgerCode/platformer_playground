@@ -89,13 +89,8 @@ python ./level_editor.py
 
 ## 📸 Screenshots
 
-<video width="100%" controls>
-	<source src="./asset/game_ex.webm" type="video/webm">
-</video>
-
-<video width="100%" controls>
-	<source src="./asset/level_editor_ex.webm" type="video/webm">
-</video>
+![](./asset/level_editor_ex.gif)
+![](./asset/game_ex.gif)
 
 ## 📜 License
 
