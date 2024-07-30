@@ -78,6 +78,7 @@ python ./level_editor.py
 </div>
 
 <style>
+
 .color {
 	tr:nth-child(1) td:nth-child(1) { color: black; }
 	tr:nth-child(2) td:nth-child(1) { color: blue; }
@@ -85,6 +86,7 @@ python ./level_editor.py
 	tr:nth-child(4) td:nth-child(1) { color: red; }
 	tr:nth-child(5) td:nth-child(1) { color: yellow; }
 }
+
 </style>
 
 </details>
