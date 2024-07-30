@@ -65,29 +65,15 @@ python ./level_editor.py
 
 <summary>💻 Color Meanings</summary>
 
-<div class="color">
+$\textcolor{blue}{\text{blue}}$
 
-|	Color			|	Meaning			|
-|	:---:			|	:---:			|
-|	Black			|	Empty			|
-|	Blue			|	Player			|
-|	Green			|	Checkpoint/finish line	|
-|	Red			|	Patrolling Enemy	|
-|	Yellow			|	Stationary Enemy	|
-
-</div>
-
-<style>
-
-.color {
-	tr:nth-child(1) td:nth-child(1) { color: black; }
-	tr:nth-child(2) td:nth-child(1) { color: blue; }
-	tr:nth-child(3) td:nth-child(1) { color: green; }
-	tr:nth-child(4) td:nth-child(1) { color: red; }
-	tr:nth-child(5) td:nth-child(1) { color: yellow; }
-}
-
-</style>
+|	Color					|	Meaning			|
+|	:---:					|	:---:			|
+|	$\textcolor{black}{\text{black}}$	|	Empty			|
+|	$\textcolor{blue}{\text{blue}}$		|	Player			|
+|	$\textcolor{green}{\text{green}}$	|	Checkpoint/finish line	|
+|	$\textcolor{red}{\text{red}}$		|	Patrolling Enemy	|
+|	$\textcolor{yellow}{\text{yellow}}$	|	Stationary Enemy	|
 
 </details>
 
