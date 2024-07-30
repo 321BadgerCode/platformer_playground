@@ -72,7 +72,8 @@ python ./level_editor.py
 |	Black			|	Empty			|
 |	Blue			|	Player			|
 |	Green			|	Checkpoint/finish line	|
-|	Red			|	Enemy			|
+|	Red			|	Patrolling Enemy	|
+|	Yellow			|	Stationary Enemy	|
 
 </div>
 
@@ -82,6 +83,7 @@ python ./level_editor.py
 	tr:nth-child(2) td:nth-child(1) { color: blue; }
 	tr:nth-child(3) td:nth-child(1) { color: green; }
 	tr:nth-child(4) td:nth-child(1) { color: red; }
+	tr:nth-child(5) td:nth-child(1) { color: yellow; }
 }
 </style>
 

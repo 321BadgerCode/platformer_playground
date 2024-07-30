@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <cmath>
 #include "./json_parser.h"
 
 using namespace std;
@@ -29,7 +30,9 @@ struct Player : Object {
 struct Platform : Object {};
 struct Checkpoint : Object {};
 struct Enemy : Object {
+	enum class Type { PATROL, STATIONARY };
 	float dx, dy;
+	Type type;
 };
 
 Player player;
@@ -38,13 +41,14 @@ vector<Platform> platforms;
 vector<Checkpoint> checkpoints;
 vector<Enemy> enemies;
 vector<pair<float, float>> enemySpeeds;
+int enemyCount = 0;
 vector<string> levels;
 int currentLevel = 0;
 
 void loadExternalData();
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 void updatePlayer();
-u8 getCollisionDirection(const Object& player, const Object& object);
+u8 getCollisionDirection(const Object& player, const Object& object, int xRange = 0, int yRange = 0);
 void die();
 void handleCollision();
 void updateEnemies();
@@ -153,21 +157,29 @@ void updatePlayer() {
 }
 
 enum class Direction { TOP = 0b0001, BOTTOM = 0b0010, LEFT = 0b0100, RIGHT = 0b1000 };
-u8 getCollisionDirection(const Object& player, const Object& object) {
+u8 getCollisionDirection(const Object& player, const Object& object, int xRange, int yRange) {
 	u8 direction = 0;
-	if (player.y + player.height > object.y && player.y < object.y + object.height) {
-		if (player.x + player.width > object.x && player.x < object.x + object.width) {
-			float overlapX = min(player.x + player.width, object.x + object.width) - max(player.x, object.x);
-			float overlapY = min(player.y + player.height, object.y + object.height) - max(player.y, object.y);
+	float playerTop = player.y - yRange;
+	float playerBottom = player.y + player.height + yRange;
+	float playerLeft = player.x - xRange;
+	float playerRight = player.x + player.width + xRange;
+	float objectTop = object.y;
+	float objectBottom = object.y + object.height;
+	float objectLeft = object.x;
+	float objectRight = object.x + object.width;
+	if (playerBottom > objectTop && playerTop < objectBottom) {
+		if (playerRight > objectLeft && playerLeft < objectRight) {
+			float overlapX = min(playerRight, objectRight) - max(playerLeft, objectLeft);
+			float overlapY = min(playerBottom, objectBottom) - max(playerTop, objectTop);
 
 			if (overlapX > overlapY) {
-				if (player.y < object.y) {
+				if (playerTop < objectTop) {
 					direction |= static_cast<u8>(Direction::TOP);
 				} else {
 					direction |= static_cast<u8>(Direction::BOTTOM);
 				}
 			} else {
-				if (player.x < object.x) {
+				if (playerLeft < objectLeft) {
 					direction |= static_cast<u8>(Direction::LEFT);
 				} else {
 					direction |= static_cast<u8>(Direction::RIGHT);
@@ -233,17 +245,24 @@ void handleCollision() {
 
 void updateEnemies() {
 	for (auto& enemy : enemies) {
-		enemy.x += enemy.dx;
-		if (enemy.x < 0 || enemy.x + enemy.width > WINDOW_WIDTH) {
-			enemy.dx = -enemy.dx;
-		}
-		for (const auto& platform : platforms) {
-			u8 direction = getCollisionDirection(enemy, platform);
-			if (direction & static_cast<u8>(Direction::LEFT)) {
+		if (enemy.type == Enemy::Type::PATROL) {
+			enemy.x += enemy.dx;
+			if (enemy.x < 0 || enemy.x + enemy.width > WINDOW_WIDTH) {
 				enemy.dx = -enemy.dx;
 			}
-			if (direction & static_cast<u8>(Direction::RIGHT)) {
-				enemy.dx = -enemy.dx;
+			for (const auto& platform : platforms) {
+				u8 direction = getCollisionDirection(enemy, platform);
+				if (direction & static_cast<u8>(Direction::LEFT) || direction & static_cast<u8>(Direction::RIGHT)) {
+					enemy.dx = -enemy.dx;
+				}
+				else if (getCollisionDirection(enemy, platform, 0, 1) & static_cast<u8>(Direction::TOP)) {
+					if (enemy.dx > 0 && enemy.x + enemy.width >= platform.x + platform.width) {
+						enemy.dx = -abs(enemy.dx);
+					}
+					else if (enemy.dx < 0 && enemy.x <= platform.x) {
+						enemy.dx = abs(enemy.dx);
+					}
+				}
 			}
 		}
 	}
@@ -437,11 +456,17 @@ void loadBitmap(const char* filepath) {
 		checkpoints.push_back(checkpoint);
 	}
 	vector<Object> enemyObjects = aggregateObject(image, width, height, 255, 0, 0);
-	int enemyCount = 0;
 	for (const Object& enemy : enemyObjects) {
 		Enemy _enemy = { enemy.x, enemy.y, enemy.width, enemy.height, enemySpeeds[enemyCount].first, enemySpeeds[enemyCount].second };
+		_enemy.type = Enemy::Type::PATROL;
 		enemies.push_back(_enemy);
 		enemyCount++;
+	}
+	enemyObjects = aggregateObject(image, width, height, 255, 255, 0);
+	for (const Object& enemy : enemyObjects) {
+		Enemy _enemy = { enemy.x, enemy.y, enemy.width, enemy.height };
+		_enemy.type = Enemy::Type::STATIONARY;
+		enemies.push_back(_enemy);
 	}
 
 	SOIL_free_image_data(image);

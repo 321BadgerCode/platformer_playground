@@ -7,8 +7,8 @@ class ArtSoftware:
 		self.root = root
 		self.root.title("Level Editor")
 
-		self.width_var = tk.IntVar(value=10)
-		self.height_var = tk.IntVar(value=10)
+		self.width_var = tk.IntVar(value=20)
+		self.height_var = tk.IntVar(value=20)
 		self.color_var = tk.StringVar(value="black")
 
 		self.create_ui()
