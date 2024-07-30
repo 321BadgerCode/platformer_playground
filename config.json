@@ -1,46 +1,74 @@
 {
 	"levels":
 	{
-		"./level/level1.bmp":
+		"./level/level01.bmp":
 		{
 			"enemies":
 			{
 				"speed": [1]
 			}
 		},
-		"./level/level2.bmp":
+		"./level/level02.bmp":
 		{
 			"enemies":
 			{
-				"speed": [1,2]
+				"speed": [2,1]
 			}
 		},
-		"./level/level3.bmp":
+		"./level/level03.bmp":
 		{
 			"enemies":
 			{
 				"speed": [7]
 			}
 		},
-		"./level/level4.bmp":
+		"./level/level04.bmp":
 		{
 			"enemies":
 			{
 				"speed": [6]
 			}
 		},
-		"./level/level5.bmp":
+		"./level/level05.bmp":
 		{
 			"enemies":
 			{
-				"speed": [8]
+				"speed": [-8,8]
 			}
 		},
-		"./level/level6.bmp":
+		"./level/level06.bmp":
 		{
 			"enemies":
 			{
 				"speed": [2]
+			}
+		},
+		"./level/level07.bmp":
+		{
+			"enemies":
+			{
+				"speed": [4,2]
+			}
+		},
+		"./level/level08.bmp":
+		{
+			"enemies":
+			{
+				"speed": [5]
+			}
+		},
+		"./level/level09.bmp":
+		{
+			"enemies":
+			{
+				"speed": [2]
+			}
+		},
+		"./level/level10.bmp":
+		{
+			"enemies":
+			{
+				"speed": [5,-5]
 			}
 		}
 	}
