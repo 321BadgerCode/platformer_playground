@@ -69,11 +69,11 @@ $\textcolor{blue}{\text{blue}}$
 
 |	Color					|	Meaning			|
 |	:---:					|	:---:			|
-|	$\textcolor{black}{\text{black}}$	|	Empty			|
-|	$\textcolor{blue}{\text{blue}}$		|	Player			|
-|	$\textcolor{green}{\text{green}}$	|	Checkpoint/finish line	|
-|	$\textcolor{red}{\text{red}}$		|	Patrolling Enemy	|
-|	$\textcolor{yellow}{\text{yellow}}$	|	Stationary Enemy	|
+|	$\textcolor{black}{\text{Black}}$	|	Empty			|
+|	$\textcolor{blue}{\text{Blue}}$		|	Player			|
+|	$\textcolor{green}{\text{Green}}$	|	Checkpoint/finish line	|
+|	$\textcolor{red}{\text{Red}}$		|	Patrolling Enemy	|
+|	$\textcolor{yellow}{\text{Yellow}}$	|	Stationary Enemy	|
 
 </details>
 
