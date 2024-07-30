@@ -65,8 +65,6 @@ python ./level_editor.py
 
 <summary>💻 Color Meanings</summary>
 
-$\textcolor{blue}{\text{blue}}$
-
 |	Color					|	Meaning			|
 |	:---:					|	:---:			|
 |	$\textcolor{black}{\text{Black}}$	|	Empty			|
